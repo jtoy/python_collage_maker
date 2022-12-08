@@ -1,17 +1,20 @@
 from PIL import Image, ImageDraw, ImageFont
+import sys,os
 font = ImageFont.truetype("/Library/Fonts/Arial.ttf", 50, encoding="unic")
 # for mac, need to change for linux
 
 # images are labeled 1_1.jpg 1_2.jpg etc for as many rows and cols you want.
 # images will automatically be resided to 512x512 or whatever size you set
 
-def generate_collage(rows, cols,width=512,height=512):
+def generate_collage(path,rows, cols,width=512,height=512):
+    rows = int(rows)
+    cols = int(cols)
     new_img = Image.new('RGB', ((width  + 10)*cols+90, (height+10)*rows-10), color=(255,255,255))
     draw = ImageDraw.Draw(new_img)
     for i in range(0, rows):
         for ii in range(0, cols):
             file = f'{i+1}_{ii+1}.jpg'
-            img = Image.open(file)
+            img = Image.open(os.path.join(path,file))
             img = img.resize((width, height))
             offset = i*10
             if ii == 0:
@@ -30,4 +33,5 @@ def generate_collage(rows, cols,width=512,height=512):
 
 
 
-generate_collage(3,5)
+#generate_collage(3,5)
+generate_collage(sys.argv[1],sys.argv[2],sys.argv[3])
