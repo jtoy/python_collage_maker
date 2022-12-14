@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 import sys,os
-font = ImageFont.truetype("/Library/Fonts/Arial.ttf", 50, encoding="unic")
+font = ImageFont.truetype("./font.ttf", 40, encoding="unic")
 # for mac, need to change for linux
 
 # images are labeled 1_1.jpg 1_2.jpg etc for as many rows and cols you want.
